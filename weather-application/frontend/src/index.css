@@ -1,0 +1,362 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans min-h-screen overflow-x-hidden;
+    font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+    letter-spacing: -0.011em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.35);
+    color: white;
+  }
+}
+
+@layer components {
+  /* ── Glassmorphism Card ── */
+  .glass-card {
+    @apply relative overflow-hidden;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    background: rgba(255, 255, 255, 0.11);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
+    box-shadow:
+      0 20px 48px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  }
+
+  .glass-card-static {
+    @apply relative overflow-hidden;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.37),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+
+  /* ── Dark Mode Glass ── */
+  .dark .glass-card {
+    background: rgba(15, 23, 42, 0.45);
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* ── Light Mode Glass & Text Override (Sky blue theme) ── */
+  :not(.dark) .glass-card, :not(.dark) .glass-card-static {
+    background: rgba(255, 255, 255, 0.42);
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow:
+      0 8px 32px rgba(15, 23, 42, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  :not(.dark) .glass-card:hover {
+    background: rgba(255, 255, 255, 0.58);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow:
+      0 20px 48px rgba(15, 23, 42, 0.09),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  }
+
+  :not(.dark) .text-white {
+    color: #0f172a !important; /* slate-900 */
+  }
+  :not(.dark) .text-white\/80 {
+    color: #1e293b !important; /* slate-800 */
+  }
+  :not(.dark) .text-white\/70 {
+    color: #334155 !important; /* slate-700 */
+  }
+  :not(.dark) .text-white\/60 {
+    color: #475569 !important; /* slate-600 */
+  }
+  :not(.dark) .text-white\/50 {
+    color: #5b6e85 !important; /* slate-500 */
+  }
+  :not(.dark) .text-white\/40 {
+    color: #70859e !important; /* slate-400 */
+  }
+  :not(.dark) .text-white\/30 {
+    color: #94a8c2 !important; /* slate-300 */
+  }
+  :not(.dark) .text-white\/20 {
+    color: #cbd5e1 !important; /* slate-200 */
+  }
+  :not(.dark) .text-violet-300 {
+    color: #6d28d9 !important; /* purple-700 */
+  }
+  :not(.dark) .text-blue-300 {
+    color: #0369a1 !important; /* sky-700 */
+  }
+  :not(.dark) .text-orange-300 {
+    color: #c2410c !important; /* orange-700 */
+  }
+
+  :not(.dark) .bg-white\/5 {
+    background-color: rgba(255, 255, 255, 0.45) !important;
+  }
+  :not(.dark) .bg-white\/10 {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+  }
+  :not(.dark) .border-white\/10 {
+    border-color: rgba(255, 255, 255, 0.35) !important;
+  }
+  :not(.dark) .border-white\/15 {
+    border-color: rgba(255, 255, 255, 0.45) !important;
+  }
+
+  /* ── Glass Input ── */
+  .glass-input {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    color: white;
+    transition: all 0.2s ease;
+  }
+
+  :not(.dark) .glass-input {
+    background: rgba(255, 255, 255, 0.45);
+    border-color: rgba(124, 58, 237, 0.2);
+    color: #0f172a;
+  }
+
+  .glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  :not(.dark) .glass-input::placeholder {
+    color: rgba(15, 23, 42, 0.4);
+  }
+
+  .glass-input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  }
+
+  :not(.dark) .glass-input:focus {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: rgba(139, 92, 246, 0.6);
+  }
+
+  /* ── Glass Button ── */
+  .glass-button {
+    background: rgba(139, 92, 246, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.5);
+    border-radius: 9999px;
+    color: white;
+    font-weight: 600;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-button:hover {
+    background: rgba(124, 58, 237, 0.9);
+    box-shadow: 0 0 24px rgba(139, 92, 246, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .glass-button:active {
+    transform: translateY(0);
+  }
+
+  .glass-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* ── Skeleton Loader ── */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.06) 25%,
+      rgba(255, 255, 255, 0.12) 50%,
+      rgba(255, 255, 255, 0.06) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+    border-radius: 0.75rem;
+  }
+
+  /* ── Text Gradient ── */
+  .text-gradient {
+    background: linear-gradient(135deg, #e2e8f0 0%, #c4b5fd 50%, #93c5fd 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #fbbf24 0%, #f97316 50%, #ef4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Temperature Display ── */
+  .temp-display {
+    font-size: clamp(4rem, 12vw, 9rem);
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.05em;
+  }
+
+  /* ── Noise Overlay ── */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.04;
+  }
+
+  /* ── Animated Blobs ── */
+  .blob {
+    position: absolute;
+    border-radius: 9999px;
+    mix-blend-mode: multiply;
+    filter: blur(80px);
+    opacity: 0.25;
+    animation: blob 7s infinite;
+  }
+
+  /* ── Forecast Day Card ── */
+  .forecast-card {
+    @apply glass-card cursor-pointer;
+    min-width: 0;
+  }
+
+  /* ── Metric Value ── */
+  .metric-value {
+    @apply text-2xl font-semibold text-white;
+    letter-spacing: -0.02em;
+  }
+
+  /* ── Weather Icon Glow ── */
+  .icon-glow {
+    filter: drop-shadow(0 0 20px rgba(139, 92, 246, 0.6));
+  }
+}
+
+@layer utilities {
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  .animation-delay-6000 {
+    animation-delay: 6s;
+  }
+
+  .text-shadow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .backdrop-saturate-200 {
+    backdrop-filter: blur(24px) saturate(200%);
+    -webkit-backdrop-filter: blur(24px) saturate(200%);
+  }
+
+  .transition-all {
+    transition-property: all;
+  }
+
+  .duration-\[2000ms\] {
+    transition-duration: 2000ms;
+  }
+}
+
+/* ── Weather background transition ── */
+@keyframes sun-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.92; }
+  50%       { transform: scale(1.05); opacity: 1; }
+}
+
+@keyframes ray-flicker {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.85); }
+  50%       { opacity: 0.7; transform: scaleY(1.1); }
+}
+
+@keyframes fog-drift {
+  0%, 100% { transform: translateX(-8%); }
+  50%       { transform: translateX(8%); }
+}
+
+@keyframes lightning-flash {
+  0%, 100% { opacity: 0; }
+  10%, 30%  { opacity: 0.9; }
+  20%, 40%  { opacity: 0; }
+}
+
+@keyframes snow-fall {
+  0%   { transform: translateY(-20px) translateX(0); }
+  33%  { transform: translateY(33vh) translateX(20px); }
+  66%  { transform: translateY(66vh) translateX(-15px); }
+  100% { transform: translateY(110vh) translateX(10px); }
+}
+
+@keyframes dust-blow {
+  0%   { transform: translateX(-20px); opacity: 0; }
+  10%  { opacity: 0.6; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateX(110vw); opacity: 0; }
+}
+
+@keyframes smoke-rise {
+  0%   { transform: translateY(0) scale(0.5); opacity: 0; }
+  20%  { opacity: 0.6; }
+  100% { transform: translateY(-600px) scale(2.5); opacity: 0; }
+}
