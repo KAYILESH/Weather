@@ -9,7 +9,7 @@ export const APP_VERSION = '1.0.0';
 // API Constants
 // =============================================
 
-export const API_BASE_URL = '/api';
+export const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL as string) || '/api';
 export const WEATHER_ENDPOINT = `${API_BASE_URL}/weather`;
 export const WEATHER_COORDS_ENDPOINT = `${API_BASE_URL}/weather/coords`;
 
