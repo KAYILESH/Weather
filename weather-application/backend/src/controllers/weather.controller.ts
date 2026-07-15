@@ -90,7 +90,7 @@ export const weatherController = {
     }
   },
 
-  async getCitySuggestions(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async getCitySuggestions(req: Request, res: Response, _next: NextFunction): Promise<void> {
     try {
       const { q } = req.query;
       if (!q || typeof q !== 'string' || q.trim().length < 2) {
