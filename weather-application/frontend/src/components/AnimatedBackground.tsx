@@ -29,7 +29,7 @@ const DARK_GRADIENTS: Record<string, string> = {
 };
 
 const LIGHT_GRADIENTS: Record<string, string> = {
-  clear:       'linear-gradient(160deg, #fff7d6 0%, #ffe082 30%, #87ceeb 100%)',
+  clear:       'linear-gradient(160deg, #f8fafc 0%, #e2e8f0 40%, #cbd5e1 100%)',
   clouds:      'linear-gradient(160deg, #e8eaf0 0%, #d1d9e6 50%, #b8c4d4 100%)',
   rain:        'linear-gradient(160deg, #8fa8c8 0%, #6b8cae 50%, #4a6e94 100%)',
   drizzle:     'linear-gradient(160deg, #9ab0c8 0%, #7a96b0 50%, #6080a0 100%)',
@@ -158,49 +158,15 @@ export const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ weatherM
       className="fixed inset-0 overflow-hidden"
       style={{ background: gradient, transition: 'background 1.5s ease' }}
     >
-      {/* ── CLEAR / SUNNY ── */}
+      {/* ── CLEAR / SUNNY – minimal light (no sun decoration) ── */}
       {isClear && isLight && (
         <div className="absolute inset-0 pointer-events-none">
-          {/* Sun disc */}
-          <motion.div
-            className="absolute rounded-full"
-            style={{
-              width: 140,
-              height: 140,
-              top: '6%',
-              right: '12%',
-              background: 'radial-gradient(circle, #fff7a0 0%, #ffe066 40%, #ffb300 80%, transparent 100%)',
-              boxShadow: '0 0 60px 30px rgba(255,200,0,0.45), 0 0 120px 60px rgba(255,160,0,0.18)',
-            }}
-            animate={{ scale: [1, 1.04, 1], opacity: [0.92, 1, 0.92] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          {/* Sun rays */}
-          {Array.from({ length: 12 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute origin-bottom"
-              style={{
-                width: 2,
-                height: 60 + (i % 3) * 20,
-                top: '6%',
-                right: 'calc(12% + 40px)',
-                transformOrigin: 'bottom center',
-                background: 'linear-gradient(to top, rgba(255,200,0,0.6), transparent)',
-                rotate: `${i * 30}deg`,
-                borderRadius: 4,
-                marginTop: 10,
-              }}
-              animate={{ opacity: [0.3, 0.7, 0.3], scaleY: [0.85, 1.1, 0.85] }}
-              transition={{ duration: 3 + i * 0.2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.25 }}
-            />
-          ))}
-          {/* Light haze shimmer */}
+          {/* Subtle cool light shimmer only */}
           <motion.div
             className="absolute inset-0"
-            style={{ background: 'radial-gradient(ellipse 80% 60% at 85% 10%, rgba(255,230,100,0.18) 0%, transparent 70%)' }}
-            animate={{ opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            style={{ background: 'radial-gradient(ellipse 70% 50% at 60% 0%, rgba(186,230,255,0.22) 0%, transparent 70%)' }}
+            animate={{ opacity: [0.7, 1, 0.7] }}
+            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
       )}
